@@ -176,7 +176,7 @@ static SUNXI_CCU_PHASE(mmc1_sample_clk,   "mmc1_sample", "mmc1", 0x08c, 20, 3, 0
 static SUNXI_CCU_PHASE(mmc1_output_clk,   "mmc1_output", "mmc1", 0x08c, 8, 3, 0);
 static SUNXI_CCU_MUX_WITH_GATE(i2s_clk,   "i2s", i2s_spdif_parents, 0x0b0, 16, 2, BIT(31), 0);
 static SUNXI_CCU_MUX_WITH_GATE(spdif_clk, "spdif", i2s_spdif_parents, 0x0b4, 16, 2, BIT(31), 0);
-static SUNXI_CCU_GATE(usb_phy0_clk,       "usb-phy0",  "osc24M", 0x0cc, BIT(8), 0);
+static SUNXI_CCU_GATE(usb_phy0_clk,       "usb-phy0",  "osc24M", 0x0cc, BIT(1), 0);
 static SUNXI_CCU_GATE(dram_ve_clk,        "dram-ve",  "pll-ddr", 0x100, BIT(0), 0);
 static SUNXI_CCU_GATE(dram_csi_clk,       "dram-csi",  "pll-ddr", 0x100, BIT(1), 0);
 static SUNXI_CCU_GATE(dram_di_clk,        "dram-deinterlace", "pll-ddr", 0x100, BIT(2), 0);
@@ -192,9 +192,7 @@ static SUNXI_CCU_M_WITH_GATE(tve_clk1_clk, "tve-clk1", "tve-clk2", 0x120, 8, 1, 
 static SUNXI_CCU_M_WITH_MUX_GATE(tvd_clk, "tvd", tvd_parents, 0x124, 0, 4, 24, 3, BIT(31), 0);
 static SUNXI_CCU_M_WITH_MUX_TABLE_GATE(csi_clk, "csi", csi_parents, csi_table, 0x120, 0, 4, 8, 3, BIT(15), 0);
 
-// TODO: BSP says the parent is pll-audio, however common sense and experience 
-// told us it should be pll-ve. pll-ve is totally not used in BSP code.
-static SUNXI_CCU_GATE(ve_clk, "ve", "pll-audio", 0x13c, BIT(31), 0);
+static SUNXI_CCU_GATE(ve_clk, "ve", "pll-ve", 0x13c, BIT(31), 0);
 static SUNXI_CCU_GATE(codec_clk, "codec", "pll-audio", 0x140, BIT(31), 0);
 static SUNXI_CCU_GATE(avs_clk, "avs", "osc24M", 0x144, BIT(31), 0);
 static struct ccu_common *suniv_ccu_clks[] = {
