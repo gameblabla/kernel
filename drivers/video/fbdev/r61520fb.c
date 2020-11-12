@@ -633,8 +633,8 @@ static int panel_init(void)
       def_fp = new_fp = 10;
     }
     // BP:10 and FP:4 or BP:13 FP:2 
-    gpio_wr_dat(new_bp); // bp 0x0a
-    gpio_wr_dat(new_fp); // fp 0x0b
+    gpio_wr_dat(0xc0); // bp 0x0a
+    gpio_wr_dat(0xc0); // fp 0x0b
     gpio_wr_dat(0x00);        			
     gpio_wr_dat(0x33);
     gpio_wr_dat(0x33);
@@ -663,7 +663,7 @@ static int panel_init(void)
     gpio_wr_dat(0x20);
 
     gpio_wr_cmd(0xc6);
-    gpio_wr_dat(0x04); // 0x04, 0x1f
+    gpio_wr_dat(0x0f); // 0x04, 0x1f
 
     gpio_wr_cmd(0xd0);
     gpio_wr_dat(0xa4);
@@ -812,118 +812,6 @@ static int panel_init(void)
     break;
   case 4:
     ser_init();
-  #if 0
-		ser_wr_cmd(0x36);
-		ser_wr_dat(0x80);
-	 
-		ser_wr_cmd(0xb2); // porch
-		ser_wr_dat(0x08); // bpa
-		ser_wr_dat(0x08); // fpa
-		ser_wr_dat(0x00); // psen
-		ser_wr_dat(0x88); // bpb
-		ser_wr_dat(0x88); // bpc
-	 
-		ser_wr_cmd(0xb7);
-		ser_wr_dat(0x35);
-	 
-		ser_wr_cmd(0xb8);
-		ser_wr_dat(0x2f);
-		ser_wr_dat(0x2b);
-		ser_wr_dat(0x2f);
-	 
-		ser_wr_cmd(0xbb);
-		ser_wr_dat(0x24);
-	 
-		ser_wr_cmd(0xc0);
-		ser_wr_dat(0x2C);
-	 
-		ser_wr_cmd(0xc3);
-		ser_wr_dat(0x10);
-	 
-		ser_wr_cmd(0xc4);
-		ser_wr_dat(0x20);
-	 
-		ser_wr_cmd(0xc6);
-		ser_wr_dat(0x11);
-	 
-		ser_wr_cmd(0xd0);
-		ser_wr_dat(0xa4);
-		ser_wr_dat(0xa1);
-	 
-		ser_wr_cmd(0xe8);
-		ser_wr_dat(0x03);
-	 
-		ser_wr_cmd(0xe9);
-		ser_wr_dat(0x0d);
-		ser_wr_dat(0x12);
-		ser_wr_dat(0x00);
-	 
-		ser_wr_cmd(0xe0);
-		ser_wr_dat(0xd0);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x08);
-		ser_wr_dat(0x11);
-		ser_wr_dat(0x1a);
-		ser_wr_dat(0x2b);
-		ser_wr_dat(0x33);
-		ser_wr_dat(0x42);
-		ser_wr_dat(0x26);
-		ser_wr_dat(0x12);
-		ser_wr_dat(0x21);
-		ser_wr_dat(0x2f);
-		ser_wr_dat(0x11);
-	 
-		ser_wr_cmd(0xe1);
-		ser_wr_dat(0xd0);
-		ser_wr_dat(0x02);
-		ser_wr_dat(0x09);
-		ser_wr_dat(0x0d);
-		ser_wr_dat(0x0d);
-		ser_wr_dat(0x27);
-		ser_wr_dat(0x2b);
-		ser_wr_dat(0x33);
-		ser_wr_dat(0x42);
-		ser_wr_dat(0x17);
-		ser_wr_dat(0x12);
-		ser_wr_dat(0x11);
-		ser_wr_dat(0x2f);
-		ser_wr_dat(0x31);
-	 
-		ser_wr_cmd(0x21);
-	 
-		ser_wr_cmd(0xb0);
-		ser_wr_dat(0x11); // rgb interface
-		ser_wr_dat(0x00); 
-		ser_wr_dat(0x00); 
-	 
-		ser_wr_cmd(0xb1);
-		ser_wr_dat(0x40); // de mode
-		ser_wr_dat(0x00); 
-		ser_wr_dat(0x00); // bpb, hpb 
-	 
-		ser_wr_cmd(0x3a); 
-		ser_wr_dat(0x55);
-	 
-		ser_wr_cmd(0x2a);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0xef);
-	 
-		ser_wr_cmd(0x2b);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x00);
-		ser_wr_dat(0x01);
-		ser_wr_dat(0x3f);
-	 
-		ser_wr_cmd(0x11); 
-		mdelay(120); 
-		ser_wr_cmd(0x29);
-		mdelay(120);
-		ser_wr_cmd(0x2c);
-		mdelay(120);
-  #else
     ser_wr_cmd(0x36);
     ser_wr_dat(0x00);
 
@@ -1032,7 +920,7 @@ static int panel_init(void)
     mdelay(120);
     ser_wr_cmd(0x2c); 
     mdelay(120);
-  #endif
+
     ser_deinit();
     break;
   }
