@@ -63,6 +63,31 @@
 				};
 			};
 		};
+		
+
+		cedarx: video-codec@1c0e000 {
+			compatible = "allwinner,suniv-f1c100s-cedar";
+			reg = <0x01c0e000 0x1000>;
+			clocks = <&ccu CLK_BUS_VE>, <&ccu CLK_VE>, <&ccu CLK_DRAM_VE>;
+			clock-names = "ahb", "mod", "ram";
+			resets = <&ccu RST_BUS_VE>;
+			interrupts = <34>;
+			allwinner,sram = <&ve_sram 1>;
+			status = "disabled";
+		};
+		
+		ion: ion {
+			compatible = "allwinner,sunxi-ion";
+			status = "disabled";
+			heap_cma@0{
+				compatible = "allwinner,cma";
+				heap-name  = "cma";
+				heap-id    = <0x4>;
+				heap-base  = <0x0>;
+				heap-size  = <0x0>;
+				heap-type  = "ion_cma";
+			};
+		};
 
 		spi0: spi@1c05000 {
 			compatible = "allwinner,suniv-f1c100s-spi", "allwinner,sun8i-h3-spi";
@@ -96,12 +121,15 @@
 			status = "disabled";
 		};
 
-    dma: dma-controller@01c02000 {
-      compatible = "allwinner,suniv-dma";
-      reg = <0x01c02000 0x1000>;
-      #dma-cells = <1>;
-    }; 
-
+		dma: dma-controller@01c02000 {
+			compatible = "allwinner,suniv-f1c100s-dma";
+			reg = <0x01c02000 0x1000>;
+			interrupts = <18>;
+			clocks = <&ccu CLK_BUS_DMA>;
+			resets = <&ccu RST_BUS_DMA>;
+			#dma-cells = <2>;	
+		}; 
+		
 		mmc0: mmc@1c0f000 {
 			compatible = "allwinner,suniv-f1c100s-mmc", "allwinner,sun7i-a20-mmc";
 			reg = <0x01c0f000 0x1000>;
