@@ -176,7 +176,7 @@ static SUNXI_CCU_PHASE(mmc1_sample_clk,   "mmc1_sample", "mmc1", 0x08c, 20, 3, 0
 static SUNXI_CCU_PHASE(mmc1_output_clk,   "mmc1_output", "mmc1", 0x08c, 8, 3, 0);
 static SUNXI_CCU_MUX_WITH_GATE(i2s_clk,   "i2s", i2s_spdif_parents, 0x0b0, 16, 2, BIT(31), 0);
 static SUNXI_CCU_MUX_WITH_GATE(spdif_clk, "spdif", i2s_spdif_parents, 0x0b4, 16, 2, BIT(31), 0);
-static SUNXI_CCU_GATE(usb_phy0_clk,       "usb-phy0",  "osc24M", 0x0cc, BIT(8), 0);
+static SUNXI_CCU_GATE(usb_phy0_clk,       "usb-phy0",  "osc24M", 0x0cc, BIT(1), 0);
 static SUNXI_CCU_GATE(dram_ve_clk,        "dram-ve",  "pll-ddr", 0x100, BIT(0), 0);
 static SUNXI_CCU_GATE(dram_csi_clk,       "dram-csi",  "pll-ddr", 0x100, BIT(1), 0);
 static SUNXI_CCU_GATE(dram_di_clk,        "dram-deinterlace", "pll-ddr", 0x100, BIT(2), 0);
