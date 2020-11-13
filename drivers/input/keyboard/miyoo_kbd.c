@@ -174,8 +174,10 @@ static void scan_handler(unsigned long unused)
 {
   static uint32_t pre=0;
   uint32_t scan=0, val=0;
+  #ifdef CONFIG_SND_SUNIV_CODEC
   extern void MIYOO_INCREASE_VOLUME(void);
   extern void MIYOO_DECREASE_VOLUME(void);
+  #endif
 
 
   if(miyoo_ver <= 2){
@@ -406,6 +408,7 @@ static void scan_handler(unsigned long unused)
         hotkey = hotkey == 0 ? 2 : hotkey;
       }
 		}
+		#ifdef CONFIG_SND_SUNIV_CODEC
 		else if((val & MY_R) && (val & MY_UP)){
       if(!hotkey_down) {
         MIYOO_INCREASE_VOLUME();
@@ -422,6 +425,7 @@ static void scan_handler(unsigned long unused)
 			hotkey_actioned = true;
 			//hotkey = hotkey == 0 ? 6 : hotkey;
 		}
+		#endif
 		else if((val & MY_R) && (val & MY_LEFT)){
       if(!hotkey_down) {
         bd = backlight_device_get_by_type(BACKLIGHT_RAW);
