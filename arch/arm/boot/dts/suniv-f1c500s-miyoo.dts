@@ -91,7 +91,7 @@
 };
 
 &usbphy {
-	usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>;
+	usb0_id_det = <&pio 4 2 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
