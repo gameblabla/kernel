@@ -491,7 +491,7 @@ static void cedar_engine_for_timer_rel(struct timer_list *arg)
 static void cedar_engine_for_events(struct timer_list *arg)
 {
 	struct cedarv_engine_task *task_entry, *task_entry_tmp;
-	struct kernel_siginfo info;
+	struct siginfo info;
 	unsigned long flags;
 
 	spin_lock_irqsave(&cedar_spin_lock, flags);
