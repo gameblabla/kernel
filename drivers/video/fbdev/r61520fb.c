@@ -898,6 +898,15 @@ static int panel_init(void)
     ser_wr_dat(0x40); // rgb mode
     ser_wr_dat(0x08); // vbp 
     ser_wr_dat(0x08); // hbp
+    
+    
+    /*
+     * When TEM =’0’: The Tearing Effect output line consists of V-Blanking information
+     * When TEM =’1’: The Tearing Effect output Line consists of both V-Blanking and H-Blanking information
+     * 
+    */
+	ser_wr_cmd(0x35); // TEM (Vsync ?)
+	ser_wr_dat(0x01); //or 0x01
 
     ser_wr_cmd(0x3a); 
     ser_wr_dat(0x55); // 18bit=0x66, 16bit=0x55
